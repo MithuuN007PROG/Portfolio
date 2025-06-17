@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mithuun B | Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f5f7fa;
+      color: #333;
+      line-height: 1.6;
+    }
+    header {
+      background: linear-gradient(to right, #1e3c72, #2a5298);
+      color: white;
+      padding: 80px 20px;
+      text-align: center;
+    }
+    header h1 {
+      font-size: 2.5rem;
+    }
+    header p {
+      font-size: 1.2rem;
+      margin-top: 10px;
+    }
+    nav {
+      background: white;
+      display: flex;
+      justify-content: center;
+      padding: 10px 0;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 999;
+    }
+    nav a {
+      margin: 0 15px;
+      text-decoration: none;
+      color: #333;
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+    nav a:hover {
+      color: #1e3c72;
+    }
+    section {
+      padding: 60px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 40px;
+      color: #1e3c72;
+    }
+    .projects, .skills, .contact {
+      display: grid;
+      gap: 20px;
+    }
+    .project {
+      background: white;
+      border-radius: 15px;
+      padding: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+    }
+    .project:hover {
+      transform: translateY(-5px);
+    }
+    .project h3 {
+      color: #2a5298;
+    }
+    .skills span {
+      display: inline-block;
+      background: #2a5298;
+      color: white;
+      padding: 10px 15px;
+      margin: 5px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+    }
+    .contact p {
+      font-size: 1.1rem;
+    }
+    .contact a {
+      color: #2a5298;
+      text-decoration: none;
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #1e3c72;
+      color: white;
+      margin-top: 40px;
+    }
+    @media (min-width: 768px) {
+      .projects {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .skills {
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Mithuun B</h1>
+  <p>BSc IT Student | Web Developer | Prompt Engineer Intern at Deloitte</p>
+</header>
+
+<nav>
+  <a href="#about">About</a>
+  <a href="#projects">Projects</a>
+  <a href="#skills">Skills</a>
+  <a href="#contact">Contact</a>
+</nav>
+
+<section id="about">
+  <h2>About Me</h2>
+  <p style="text-align: center; max-width: 700px; margin: auto;">
+    I'm Mithuun, a dedicated BSc IT student with a deep interest in building tech-driven solutions. With experience in both front-end and back-end development, I aim to innovate and solve real-world problems through software.
+  </p>
+</section>
+
+<section id="projects">
+  <h2>Projects</h2>
+  <div class="projects">
+    <div class="project">
+      <img src="images/bank.jpg" alt="Banking System" style="width:100%; border-radius:10px; height:180px; object-fit:cover;">
+      <h3>Banking System</h3>
+      <p>A full-featured banking system built using C++ to manage accounts, transactions, and reports.</p>
+    </div>
+
+    <div class="project">
+      <img src="images/furycar.jpg" alt="MAX FURY CAR" style="width:100%; border-radius:10px; height:180px; object-fit:cover;">
+      <h3>MAX FURY CAR</h3>
+      <p>A wireless Wi-Fi surveillance robot car with real-time video — won 1st prize.</p>
+    </div>
+
+    <div class="project">
+      <img src="images/triptastic.jpg" alt="TRIPTASTIC" style="width:100%; border-radius:10px; height:180px; object-fit:cover;">
+      <h3>TRIPTASTIC</h3>
+      <p>Travel planner built using HTML, CSS, JS, PHP & SQL for trip management.</p>
+    </div>
+
+    <div class="project">
+      <img src="images/carquest.jpg" alt="CAR QUEST" style="width:100%; border-radius:10px; height:180px; object-fit:cover;">
+      <h3>CAR QUEST</h3>
+      <p>Web application to showcase cars with responsive design and interactive UI.</p>
+    </div>
+
+    <div class="project">
+      <img src="images/internship.jpg" alt="Internship" style="width:100%; border-radius:10px; height:180px; object-fit:cover;">
+      <h3>Internship @ Prompt Infotech</h3>
+      <p>Worked on real-world web components and responsive layout implementation.</p>
+    </div>
+  </div>
+</section>
+
+
+<section id="skills">
+  <h2>Skills</h2>
+  <div class="skills">
+    <span>HTML</span>
+    <span>CSS</span>
+    <span>JavaScript</span>
+    <span>PHP</span>
+    <span>SQL</span>
+    <span>C++</span>
+    <span>Python</span>
+    <span>Responsive Design</span>
+    <span>Teamwork</span>
+  </div>
+</section>
+
+<section id="contact">
+  <h2>Contact</h2>
+  <div class="contact">
+    <p>Email: <a href="mailto:mithuunb@email.com">mithuunb@email.com</a></p>
+    <p>GitHub: <a href="#">github.com/yourgithub</a></p>
+    <p>LinkedIn: <a href="#">linkedin.com/in/yourlinkedin</a></p>
+  </div>
+</section>
+
+<footer>
+  &copy; 2025 Mithuun B. All Rights Reserved.
+</footer>
+
+</body>
+</html>
