@@ -28,6 +28,7 @@
       padding: 0;
       scroll-behavior: smooth;
     }
+
     body {
       font-family: 'Poppins', sans-serif;
       background: var(--bg-color);
@@ -35,6 +36,7 @@
       line-height: 1.6;
       transition: background 0.3s, color 0.3s;
     }
+
     header {
       background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
       color: white;
@@ -42,6 +44,7 @@
       text-align: center;
       position: relative;
     }
+
     header img {
       width: 120px;
       height: 120px;
@@ -50,9 +53,11 @@
       box-shadow: 0 4px 10px rgba(0,0,0,0.2);
       margin-bottom: 15px;
     }
+
     header h1 {
       font-size: 2.5rem;
     }
+
     header .typing {
       font-size: 1.2rem;
       margin-top: 10px;
@@ -62,13 +67,16 @@
       width: 0;
       animation: typing 4s steps(40, end) forwards, blink 0.75s step-end infinite;
     }
+
     @keyframes typing {
       from { width: 0 }
       to { width: 100% }
     }
+
     @keyframes blink {
       50% { border-color: transparent; }
     }
+
     .resume-btn {
       margin-top: 20px;
       display: inline-block;
@@ -80,9 +88,11 @@
       text-decoration: none;
       transition: background 0.3s;
     }
+
     .resume-btn:hover {
       background: #ddd;
     }
+
     .toggle-btn {
       position: absolute;
       top: 20px;
@@ -107,6 +117,7 @@
       top: 0;
       z-index: 999;
     }
+
     nav a {
       margin: 0 15px;
       text-decoration: none;
@@ -114,6 +125,7 @@
       font-weight: 600;
       transition: color 0.3s;
     }
+
     nav a:hover {
       color: var(--primary-color);
     }
@@ -123,15 +135,18 @@
       max-width: 1000px;
       margin: auto;
     }
+
     h2 {
       text-align: center;
       margin-bottom: 40px;
       color: var(--primary-color);
     }
+
     .projects, .contact {
       display: grid;
       gap: 20px;
     }
+
     .project {
       background: var(--card-bg);
       border-radius: 15px;
@@ -139,9 +154,20 @@
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
       transition: transform 0.3s;
     }
+
     .project:hover {
       transform: translateY(-5px);
     }
+
+    .project img {
+      width: 100%;
+      max-height: 160px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 15px;
+      transition: transform 0.3s ease;
+    }
+
     .project h3 {
       color: var(--secondary-color);
     }
@@ -184,11 +210,13 @@
       flex-direction: column;
       gap: 15px;
     }
+
     input, textarea {
       padding: 10px;
       border-radius: 10px;
       border: 1px solid #ccc;
     }
+
     button {
       padding: 10px;
       background: var(--primary-color);
@@ -197,6 +225,7 @@
       border-radius: 10px;
       cursor: pointer;
     }
+
     footer {
       text-align: center;
       padding: 20px;
@@ -204,6 +233,7 @@
       color: white;
       margin-top: 40px;
     }
+
     @media (min-width: 768px) {
       .projects {
         grid-template-columns: repeat(2, 1fr);
@@ -258,8 +288,9 @@
       <h3>CAR QUEST</h3>
       <p>Web application to showcase cars with responsive design and interactive UI.</p>
     </div>
+  </div>
 </section>
-  
+
 <section id="skills" data-aos="fade-up">
   <h2>Skills</h2>
   <div class="skills-slider">
