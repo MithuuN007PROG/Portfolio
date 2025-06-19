@@ -43,7 +43,7 @@
       width: 130px;
       height: 130px;
       border-radius: 50%;
-      object-fit: auto;
+      object-fit: cover;
       border: 3px solid var(--accent);
       box-shadow: 0 0 25px rgba(0, 255, 255, 0.4);
       margin-bottom: 20px;
@@ -60,14 +60,20 @@
       margin-bottom: 10px;
     }
 
-    header .typing {
+    .typing-container {
+      height: 40px;
+      margin: 10px auto;
+      overflow: hidden;
+    }
+
+    .typing {
       font-size: 1.2rem;
-      margin-top: 10px;
+      display: inline-block;
       white-space: nowrap;
       overflow: hidden;
       border-right: 2px solid white;
       width: 0;
-      animation: typing 4s steps(40, end) forwards, blink 0.75s step-end infinite;
+      animation: typing 3s steps(30, end) forwards, blink 0.75s step-end infinite;
     }
 
     @keyframes typing {
@@ -76,7 +82,8 @@
     }
 
     @keyframes blink {
-      50% { border-color: transparent; }
+      from, to { border-color: transparent }
+      50% { border-color: white; }
     }
 
     .resume-btn {
@@ -88,11 +95,12 @@
       border-radius: 30px;
       font-weight: 600;
       text-decoration: none;
-      transition: background 0.3s;
+      transition: background 0.3s, transform 0.3s;
     }
 
     .resume-btn:hover {
       background: white;
+      transform: translateY(-2px);
     }
 
     nav {
@@ -112,10 +120,13 @@
       color: var(--text-color);
       font-weight: 600;
       transition: color 0.3s;
+      padding: 5px 10px;
+      border-radius: 5px;
     }
 
     nav a:hover {
       color: var(--accent);
+      background: rgba(255,255,255,0.1);
     }
 
     section {
@@ -129,6 +140,16 @@
       margin-bottom: 40px;
       color: var(--accent);
       font-size: 2rem;
+      position: relative;
+    }
+
+    h2::after {
+      content: '';
+      display: block;
+      width: 80px;
+      height: 3px;
+      background: var(--accent);
+      margin: 10px auto 0;
     }
 
     .projects {
@@ -142,11 +163,12 @@
       border-radius: 15px;
       padding: 20px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.4);
-      transition: transform 0.3s;
+      transition: transform 0.3s, box-shadow 0.3s;
     }
 
     .project:hover {
       transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.5);
     }
 
     .project img {
@@ -159,25 +181,34 @@
 
     .project h3 {
       color: var(--accent);
+      margin-bottom: 10px;
     }
 
     .skills-slider {
       overflow: hidden;
       position: relative;
       height: 60px;
-      margin: auto;
+      margin: 40px auto;
       width: 100%;
       max-width: 900px;
     }
 
     .skills-track {
       display: flex;
-      width: max-content;
-      animation: scrollSkills 30s linear infinite;
+      position: absolute;
+      white-space: nowrap;
+      will-change: transform;
+      animation: scrollSkills 20s linear infinite;
+    }
+
+    .skills-track:hover {
+      animation-play-state: paused;
     }
 
     .skills-track span {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       min-width: 200px;
       background: var(--accent);
       color: black;
@@ -185,8 +216,8 @@
       margin-right: 15px;
       border-radius: 20px;
       font-size: 0.9rem;
-      text-align: center;
-      white-space: nowrap;
+      font-weight: 600;
+      height: 50px;
     }
 
     @keyframes scrollSkills {
@@ -198,23 +229,39 @@
       display: flex;
       flex-direction: column;
       gap: 15px;
+      max-width: 600px;
+      margin: 0 auto;
     }
 
     input, textarea {
-      padding: 10px;
+      padding: 12px;
       border-radius: 10px;
       border: 1px solid #888;
       background: #2c2f33;
       color: white;
+      font-family: 'Poppins', sans-serif;
+      transition: border-color 0.3s;
+    }
+
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: var(--accent);
     }
 
     button {
-      padding: 10px;
+      padding: 12px;
       background: var(--accent);
       color: #000;
       border: none;
       border-radius: 10px;
       cursor: pointer;
+      font-weight: 600;
+      transition: background 0.3s, transform 0.3s;
+    }
+
+    button:hover {
+      background: white;
+      transform: translateY(-2px);
     }
 
     footer {
@@ -224,6 +271,30 @@
       color: white;
       margin-top: 40px;
     }
+
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2rem;
+      }
+      
+      .typing {
+        font-size: 1rem;
+      }
+      
+      nav {
+        flex-wrap: wrap;
+      }
+      
+      nav a {
+        margin: 5px;
+        font-size: 0.9rem;
+      }
+      
+      .skills-track span {
+        min-width: 150px;
+        font-size: 0.8rem;
+      }
+    }
   </style>
 </head>
 <body>
@@ -231,7 +302,9 @@
 <header>
   <img src="profile.jpg" alt="Mithuun Profile" class="profile-pic">
   <h1>Mithuun B</h1>
-  <div class="typing">BSc IT Student | Web Developer|</div>
+  <div class="typing-container">
+    <div class="typing">BSc IT Student | Web Developer</div>
+  </div>
   <a href="Mithuun_Resume.pdf" class="resume-btn" download>📄 Download Resume</a>
 </header>
 
@@ -289,6 +362,17 @@
       <span>Responsive Design</span>
       <span>Git</span>
       <span>Teamwork</span>
+      <!-- Duplicate for seamless looping -->
+      <span>HTML</span>
+      <span>CSS</span>
+      <span>JavaScript</span>
+      <span>PHP</span>
+      <span>SQL</span>
+      <span>C++</span>
+      <span>Python</span>
+      <span>Responsive Design</span>
+      <span>Git</span>
+      <span>Teamwork</span>
     </div>
   </div>
 </section>
@@ -310,7 +394,22 @@
 </footer>
 
 <script>
-  AOS.init();
+  // Initialize AOS animation library
+  AOS.init({
+    duration: 800,
+    easing: 'ease-in-out',
+    once: true
+  });
+  
+  // Make typing animation restart when user comes back to the page
+  document.addEventListener('visibilitychange', function() {
+    if (!document.hidden) {
+      const typingElement = document.querySelector('.typing');
+      typingElement.style.animation = 'none';
+      void typingElement.offsetWidth; // Trigger reflow
+      typingElement.style.animation = 'typing 3s steps(30, end) forwards, blink 0.75s step-end infinite';
+    }
+  });
 </script>
 
 </body>
