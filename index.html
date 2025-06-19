@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Mithuun B | Portfolio</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <style>
     :root {
       --bg-color: #f5f7fa;
@@ -177,12 +179,23 @@
       100% { transform: translateX(-50%); }
     }
 
-    .contact p {
-      font-size: 1.1rem;
+    .contact form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
     }
-    .contact a {
-      color: var(--secondary-color);
-      text-decoration: none;
+    input, textarea {
+      padding: 10px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+    }
+    button {
+      padding: 10px;
+      background: var(--primary-color);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
     }
     footer {
       text-align: center;
@@ -215,43 +228,33 @@
   <a href="#contact">Contact</a>
 </nav>
 
-<section id="about">
+<section id="about" data-aos="fade-up">
   <h2>About Me</h2>
   <p style="text-align: center; max-width: 700px; margin: auto;">
     I'm Mithuun, a dedicated BSc IT student with a deep interest in building tech-driven solutions. With experience in both front-end and back-end development, I aim to innovate and solve real-world problems through software.
   </p>
 </section>
 
-<section id="projects">
+<section id="projects" data-aos="fade-up">
   <h2>Projects</h2>
   <div class="projects">
     <div class="project">
-      <img src="bank.jpg" alt="Banking System" style="width:100%; border-radius:10px; height:180px; object-fit:cover;">
-      <h3>Banking System</h3>
-      <p>A full-featured banking system built using C++ to manage accounts, transactions, and reports.</p>
+      <h3>Software</h3>
+      <p>Banking System - C++ based account and transaction management.</p>
     </div>
-
     <div class="project">
-      <img src="furycar.jpg" alt="MAX FURY CAR" style="width:100%; border-radius:10px; height:180px; object-fit:cover;">
-      <h3>MAX FURY CAR</h3>
-      <p>A wireless Wi-Fi surveillance robot car with real-time video — won 1st prize.</p>
+      <h3>IoT</h3>
+      <p>MAX FURY CAR - Wi-Fi surveillance robot car. Won 1st Prize.</p>
     </div>
-
     <div class="project">
-      <img src="triptastic.jpg" alt="TRIPTASTIC" style="width:100%; border-radius:10px; height:180px; object-fit:cover;">
-      <h3>TRIPTASTIC</h3>
-      <p>Travel planner built using HTML, CSS, JS, PHP & SQL for trip management.</p>
+      <h3>Web</h3>
+      <p>TRIPTASTIC - Travel planner using HTML, CSS, JS, PHP & SQL.<br>
+         CAR QUEST - Interactive car showcase web app.</p>
     </div>
-
-    <div class="project">
-      <img src="carquest.jpg" alt="CAR QUEST" style="width:100%; border-radius:10px; height:180px; object-fit:cover;">
-      <h3>CAR QUEST</h3>
-      <p>Web application to showcase cars with responsive design and interactive UI.</p>
-    </div>
-    
+  </div>
 </section>
 
-<section id="skills">
+<section id="skills" data-aos="fade-up">
   <h2>Skills</h2>
   <div class="skills-slider">
     <div class="skills-track">
@@ -264,21 +267,20 @@
       <span>Python</span>
       <span>Responsive Design</span>
       <span>Teamwork</span>
-      <!-- Duplicates for smooth loop -->
-      <span>HTML</span>
-      <span>CSS</span>
-      <span>JavaScript</span>
-      <span>PHP</span>
+      <span>Git</span>
     </div>
   </div>
 </section>
 
-<section id="contact">
+<section id="contact" data-aos="fade-up">
   <h2>Contact</h2>
   <div class="contact">
-    <p>Email: <a href="mailto:mithuunb@email.com">mithuunb@email.com</a></p>
-    <p>GitHub: <a href="#">github.com/yourgithub</a></p>
-    <p>LinkedIn: <a href="#">linkedin.com/in/yourlinkedin</a></p>
+    <form action="https://formspree.io/f/{your_id}" method="POST">
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="email" name="email" placeholder="Your Email" required>
+      <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
   </div>
 </section>
 
@@ -287,6 +289,7 @@
 </footer>
 
 <script>
+  AOS.init();
   function toggleDarkMode() {
     document.body.classList.toggle('dark');
   }
