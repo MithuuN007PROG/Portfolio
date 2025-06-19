@@ -6,6 +6,20 @@
   <title>Mithuun B | Portfolio</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --bg-color: #f5f7fa;
+      --text-color: #333;
+      --primary-color: #1e3c72;
+      --secondary-color: #2a5298;
+      --card-bg: white;
+    }
+
+    body.dark {
+      --bg-color: #1c1e22;
+      --text-color: #f0f0f0;
+      --card-bg: #2c2f33;
+    }
+
     * {
       box-sizing: border-box;
       margin: 0;
@@ -14,23 +28,73 @@
     }
     body {
       font-family: 'Poppins', sans-serif;
-      background: #f5f7fa;
-      color: #333;
+      background: var(--bg-color);
+      color: var(--text-color);
       line-height: 1.6;
+      transition: background 0.3s, color 0.3s;
     }
     header {
-      background: linear-gradient(to right, #1e3c72, #2a5298);
+      background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
       color: white;
       padding: 80px 20px;
       text-align: center;
+      position: relative;
+    }
+    header img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 4px solid white;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      margin-bottom: 15px;
     }
     header h1 {
       font-size: 2.5rem;
     }
-    header p {
+    header .typing {
       font-size: 1.2rem;
       margin-top: 10px;
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: 2px solid white;
+      width: 0;
+      animation: typing 4s steps(40, end) forwards, blink 0.75s step-end infinite;
     }
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+    @keyframes blink {
+      50% { border-color: transparent; }
+    }
+    .resume-btn {
+      margin-top: 20px;
+      display: inline-block;
+      background: white;
+      color: var(--secondary-color);
+      padding: 10px 20px;
+      border-radius: 30px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.3s;
+    }
+    .resume-btn:hover {
+      background: #ddd;
+    }
+    .toggle-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: white;
+      color: var(--primary-color);
+      border: none;
+      padding: 8px 16px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: bold;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
     nav {
       background: white;
       display: flex;
@@ -44,13 +108,14 @@
     nav a {
       margin: 0 15px;
       text-decoration: none;
-      color: #333;
+      color: var(--text-color);
       font-weight: 600;
       transition: color 0.3s;
     }
     nav a:hover {
-      color: #1e3c72;
+      color: var(--primary-color);
     }
+
     section {
       padding: 60px 20px;
       max-width: 1000px;
@@ -59,14 +124,14 @@
     h2 {
       text-align: center;
       margin-bottom: 40px;
-      color: #1e3c72;
+      color: var(--primary-color);
     }
-    .projects, .skills, .contact {
+    .projects, .contact {
       display: grid;
       gap: 20px;
     }
     .project {
-      background: white;
+      background: var(--card-bg);
       border-radius: 15px;
       padding: 20px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
@@ -76,61 +141,53 @@
       transform: translateY(-5px);
     }
     .project h3 {
-      color: #2a5298;
+      color: var(--secondary-color);
     }
-    .skills span {
+
+    .skills-slider {
+      overflow: hidden;
+      position: relative;
+      height: 60px;
+      margin: auto;
+      width: 100%;
+      max-width: 900px;
+    }
+
+    .skills-track {
+      display: flex;
+      width: max-content;
+      animation: scrollSkills 30s linear infinite;
+    }
+
+    .skills-track span {
       display: inline-block;
-      background: #2a5298;
+      min-width: 200px;
+      background: var(--secondary-color);
       color: white;
-      padding: 10px 15px;
-      margin: 5px;
+      padding: 10px 20px;
+      margin-right: 15px;
       border-radius: 20px;
       font-size: 0.9rem;
-      .skills-slider {
-  overflow: hidden;
-  position: relative;
-  height: 50px;
-  margin: auto;
-  width: 100%;
-  max-width: 800px;
-}
-
-.skills-track {
-  display: flex;
-  width: calc(10 * 200px); /* Adjust if more skills */
-  animation: scrollSkills 30s linear infinite;
-}
-
-.skills-track span {
-  display: inline-block;
-  min-width: 200px;
-  background: #2a5298;
-  color: white;
-  padding: 10px 20px;
-  margin-right: 10px;
-  border-radius: 20px;
-  font-size: 0.9rem;
-  text-align: center;
-  white-space: nowrap;
-}
-
-@keyframes scrollSkills {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-
+      text-align: center;
+      white-space: nowrap;
     }
+
+    @keyframes scrollSkills {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
     .contact p {
       font-size: 1.1rem;
     }
     .contact a {
-      color: #2a5298;
+      color: var(--secondary-color);
       text-decoration: none;
     }
     footer {
       text-align: center;
       padding: 20px;
-      background: #1e3c72;
+      background: var(--primary-color);
       color: white;
       margin-top: 40px;
     }
@@ -138,22 +195,18 @@
       .projects {
         grid-template-columns: repeat(2, 1fr);
       }
-      .skills {
-        justify-content: center;
-      }
     }
   </style>
 </head>
 <body>
 
 <header>
-  <div style="display: flex; align-items: center; flex-direction: column;">
-    <img src="profile.jpg" style="width:120px; height:120px; border:4px solid white; box-shadow: 0 4px 10px rgba(0,0,0,0.2); margin-bottom: 15px;">
-    <h1>Mithuun B</h1>
-    <p>BSc IT Student | Web Developer |</p>
-  </div>
+  <button class="toggle-btn" onclick="toggleDarkMode()">🌙 Dark Mode</button>
+  <img src="profile.jpg" alt="Mithuun Profile">
+  <h1>Mithuun B</h1>
+  <div class="typing">BSc IT Student | Web Developer | Prompt Engineer Intern</div>
+  <a href="Mithuun_Resume.pdf" class="resume-btn" download>📄 Download Resume</a>
 </header>
-
 
 <nav>
   <a href="#about">About</a>
@@ -195,19 +248,34 @@
       <h3>CAR QUEST</h3>
       <p>Web application to showcase cars with responsive design and interactive UI.</p>
     </div>
-    
+
+    <div class="project">
+      <img src="internship.jpg" alt="Internship" style="width:100%; border-radius:10px; height:180px; object-fit:cover;">
+      <h3>Internship @ Prompt Infotech</h3>
+      <p>Worked on real-world web components and responsive layout implementation.</p>
+    </div>
+  </div>
+</section>
+
 <section id="skills">
   <h2>Skills</h2>
-  <div class="skills">
-    <span>HTML</span>
-    <span>CSS</span>
-    <span>JavaScript</span>
-    <span>PHP</span>
-    <span>SQL</span>
-    <span>C++</span>
-    <span>Python</span>
-    <span>Responsive Design</span>
-    <span>Teamwork</span>
+  <div class="skills-slider">
+    <div class="skills-track">
+      <span>HTML</span>
+      <span>CSS</span>
+      <span>JavaScript</span>
+      <span>PHP</span>
+      <span>SQL</span>
+      <span>C++</span>
+      <span>Python</span>
+      <span>Responsive Design</span>
+      <span>Teamwork</span>
+      <!-- Duplicates for smooth loop -->
+      <span>HTML</span>
+      <span>CSS</span>
+      <span>JavaScript</span>
+      <span>PHP</span>
+    </div>
   </div>
 </section>
 
@@ -223,6 +291,12 @@
 <footer>
   &copy; 2025 Mithuun B. All Rights Reserved.
 </footer>
+
+<script>
+  function toggleDarkMode() {
+    document.body.classList.toggle('dark');
+  }
+</script>
 
 </body>
 </html>
