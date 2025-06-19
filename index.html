@@ -86,6 +86,39 @@
       margin: 5px;
       border-radius: 20px;
       font-size: 0.9rem;
+      .skills-slider {
+  overflow: hidden;
+  position: relative;
+  height: 50px;
+  margin: auto;
+  width: 100%;
+  max-width: 800px;
+}
+
+.skills-track {
+  display: flex;
+  width: calc(10 * 200px); /* Adjust if more skills */
+  animation: scrollSkills 30s linear infinite;
+}
+
+.skills-track span {
+  display: inline-block;
+  min-width: 200px;
+  background: #2a5298;
+  color: white;
+  padding: 10px 20px;
+  margin-right: 10px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  text-align: center;
+  white-space: nowrap;
+}
+
+@keyframes scrollSkills {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
     }
     .contact p {
       font-size: 1.1rem;
@@ -162,16 +195,7 @@
       <h3>CAR QUEST</h3>
       <p>Web application to showcase cars with responsive design and interactive UI.</p>
     </div>
-
-    <div class="project">
-      <img src="internship.jpg" alt="Internship" style="width:100%; border-radius:10px; height:180px; object-fit:cover;">
-      <h3>Internship @ Prompt Infotech</h3>
-      <p>Worked on real-world web components and responsive layout implementation.</p>
-    </div>
-  </div>
-</section>
-
-
+    
 <section id="skills">
   <h2>Skills</h2>
   <div class="skills">
