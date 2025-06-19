@@ -1,393 +1,317 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Mithuun B | Portfolio</title>
-
-  <!-- Fonts & Icons -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
-  <script src="https://kit.fontawesome.com/yourkit.js" crossorigin="anonymous"></script>
-
-  <!-- Animation Libraries -->
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
-
   <style>
-    /* Root Variables for Theme */
     :root {
-      --bg: #0d0f14; --fg: #e0e1e3;
-      --card-glass: rgba(255,255,255,0.05);
-      --accent: #00d1ff; --accent-dark: #009bbf;
-      --scrollbar: #303339;
+      --bg-color: #0e0e11;
+      --text-color: #f0f0f0;
+      --primary-color: #00d1ff;
+      --secondary-color: #1a1a2e;
+      --accent: #00ffd5;
+      --card-bg: #1c1e22;
     }
-    body.light {
-      --bg: #f5f7fa; --fg: #333;
-      --card-glass: rgba(255,255,255,0.4);
-      --accent: #2879ff; --accent-dark: #185fc2;
-      --scrollbar: #bbb;
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth;
     }
-    * { box-sizing:border-box; margin:0; padding:0; cursor: none; }
+
     body {
-      background: var(--bg); color: var(--fg);
-      font-family:'Poppins',sans-serif;
-      transition:background 0.5s,color 0.5s;
-    }
-    ::-webkit-scrollbar { width:8px; }
-    ::-webkit-scrollbar-track { background:transparent; }
-    ::-webkit-scrollbar-thumb { background:var(--scrollbar); border-radius:4px; }
-
-    /* Tech Cursor */
-    .cursor {
-      position:fixed; top:0; left:0;
-      width:12px; height:12px;
-      border:2px solid var(--accent);
-      border-radius:50%; pointer-events:none;
-      mix-blend-mode: difference;
-      transform: translate(-50%,-50%);
-      will-change: transform;
-      transition: transform .1s ease-out;
-      z-index:9999;
+      font-family: 'Poppins', sans-serif;
+      background: var(--bg-color);
+      color: var(--text-color);
+      line-height: 1.6;
     }
 
-    /* Sections Layout */
-    section { padding:80px 20px; max-width:1000px; margin:auto; }
-
-    /* Header with Gradient Blobs */
     header {
-      position:relative; height:100vh; display:flex;
-      align-items:center; justify-content:center;
-      flex-direction:column;
-      text-align:center; overflow:hidden;
+      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+      color: white;
+      padding: 80px 20px;
+      text-align: center;
+      position: relative;
     }
-    header::before, header::after {
-      content:'';
-      position:absolute; border-radius:50%;
-      filter:blur(200px); opacity:0.7;
-      animation:blobMove 10s infinite;
+
+    .profile-pic {
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--accent);
+      box-shadow: 0 0 25px rgba(0, 255, 255, 0.4);
+      margin-bottom: 20px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
-    header::before {
-      width:600px; aspect-ratio:1;
-      background: linear-gradient(45deg, #00d1ff, #0087e8);
-      top:10%; left:-100%;
+
+    .profile-pic:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 40px rgba(0, 255, 255, 0.6);
     }
-    header::after {
-      width:500px; aspect-ratio:1;
-      background: linear-gradient(45deg, #ff00d1, #e80087);
-      bottom:20%; right:-100%;
-      animation-delay:5s;
-    }
-    @keyframes blobMove {
-      0%,100%{transform: translate(0,0);}
-      50%{transform: translate(150px,100px);}
-    }
+
     header h1 {
-      font-size:3rem; mix-blend-mode: difference;
-      text-shadow:0 2px 5px rgba(0,0,0,0.7);
-      z-index:1;
+      font-size: 2.8rem;
+      margin-bottom: 10px;
     }
-    #typed-text {
-      color: var(--fg);
-      font-size: 1.5rem;
+
+    header .typing {
+      font-size: 1.2rem;
+      margin-top: 10px;
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: 2px solid white;
+      width: 0;
+      animation: typing 4s steps(40, end) forwards, blink 0.75s step-end infinite;
+    }
+
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+
+    @keyframes blink {
+      50% { border-color: transparent; }
+    }
+
+    .resume-btn {
       margin-top: 20px;
-      height: 2rem;
-      z-index:1;
+      display: inline-block;
+      background: var(--accent);
+      color: #000;
+      padding: 10px 20px;
+      border-radius: 30px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.3s;
     }
 
-    /* Glass Card Style */
-    .glass-card {
-      background: var(--card-glass);
-      backdrop-filter: blur(10px);
-      border:1px solid rgba(255,255,255,0.2);
-      border-radius:15px;
-      overflow:hidden;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+    .resume-btn:hover {
+      background: white;
     }
 
-    /* Projects Grid */
-    .projects {
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-      gap:30px;
+    nav {
+      background: #101216;
+      display: flex;
+      justify-content: center;
+      padding: 10px 0;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.4);
+      position: sticky;
+      top: 0;
+      z-index: 999;
     }
-    .project {
-      position:relative;
-      overflow:hidden;
-      transition:transform .3s ease;
+
+    nav a {
+      margin: 0 15px;
+      text-decoration: none;
+      color: var(--text-color);
+      font-weight: 600;
+      transition: color 0.3s;
     }
-    .project:hover {
-      transform: scale(1.03);
-    }
-    .project img {
-      width:100%; height:180px;
-      object-fit:cover;
-      filter: brightness(0.85);
-      transition: filter .3s ease;
-    }
-    .project:hover img {
-      filter: brightness(1);
-    }
-    .project-content {
-      padding:20px;
-    }
-    .project-content h3 {
-      margin-bottom:10px;
+
+    nav a:hover {
       color: var(--accent);
     }
-    .project-content p {
-      color: var(--fg);
-      font-size: .95rem;
-    }
-    .project-btns {
-      margin-top:10px;
-      display:flex; gap:10px;
-    }
-    .project-btns a {
-      padding:8px 12px;
-      background: var(--accent);
-      color:var(--bg);
-      border-radius:8px;
-      text-decoration:none;
-      font-size:.85rem;
-      transition: background .2s;
-    }
-    .project-btns a:hover {
-      background: var(--accent-dark);
+
+    section {
+      padding: 60px 20px;
+      max-width: 1000px;
+      margin: auto;
     }
 
-    /* Skills Slider */
-    .skills-slider { overflow:hidden; position:relative; height:60px; margin:auto; max-width:900px; }
-    .skills-track { display:flex; animation:scrollSkills 20s linear infinite; }
+    h2 {
+      text-align: center;
+      margin-bottom: 40px;
+      color: var(--accent);
+      font-size: 2rem;
+    }
+
+    .projects {
+      display: grid;
+      gap: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+
+    .project {
+      background: var(--card-bg);
+      border-radius: 15px;
+      padding: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+      transition: transform 0.3s;
+    }
+
+    .project:hover {
+      transform: translateY(-5px);
+    }
+
+    .project img {
+      width: 100%;
+      height: 180px;
+      border-radius: 10px;
+      object-fit: cover;
+      margin-bottom: 10px;
+    }
+
+    .project h3 {
+      color: var(--accent);
+    }
+
+    .skills-slider {
+      overflow: hidden;
+      position: relative;
+      height: 60px;
+      margin: auto;
+      width: 100%;
+      max-width: 900px;
+    }
+
+    .skills-track {
+      display: flex;
+      width: max-content;
+      animation: scrollSkills 30s linear infinite;
+    }
+
     .skills-track span {
-      display:inline-block;
-      margin-right:15px;
-      padding:10px 20px;
-      background:rgba(255,255,255,0.1);
-      border-radius:20px;
-      backdrop-filter: blur(5px);
-      color:var(--fg);
-      font-weight:600;
-      white-space:nowrap;
+      display: inline-block;
+      min-width: 200px;
+      background: var(--accent);
+      color: black;
+      padding: 10px 20px;
+      margin-right: 15px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      text-align: center;
+      white-space: nowrap;
     }
-    @keyframes scrollSkills {0%{transform:translateX(0);}100%{transform:translateX(-50%);} }
 
-    /* Contact Form */
-    form { display:flex; flex-direction:column; gap:15px; }
+    @keyframes scrollSkills {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    .contact form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
     input, textarea {
-      padding:12px; border-radius:8px;
-      border:none; background:rgba(255,255,255,0.1);
-      backdrop-filter: blur(5px);
-      color:var(--fg); font-size:1rem;
-    }
-    button.submit-btn {
-      align-self:flex-start;
-      padding:10px 20px;
-      background:var(--accent);
-      color:var(--bg);
-      border:none; border-radius:8px;
-      cursor:pointer;
-      transition:background .2s
-    }
-    button.submit-btn:hover {
-      background:var(--accent-dark);
+      padding: 10px;
+      border-radius: 10px;
+      border: 1px solid #888;
+      background: #2c2f33;
+      color: white;
     }
 
-    /* ScrollSpy Nav */
-    nav {
-      position:fixed; top:20px; left:50%;
-      transform:translateX(-50%);
-      display:flex; gap:25px;
-      background:var(--card-glass);
-      backdrop-filter: blur(5px);
-      padding:8px 20px;
-      border-radius:40px;
-      z-index:100;
+    button {
+      padding: 10px;
+      background: var(--accent);
+      color: #000;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
     }
-    nav a {
-      color: var(--fg);
-      padding:8px;
-      transition:color .2s;
-      font-weight:500;
-    }
-    nav a.active {
-      color:var(--accent);
-      text-shadow: 0 0 8px var(--accent);
-    }
-
-    /* Back to Top */
-    #backToTop {
-      position:fixed; bottom:30px; right:30px;
-      background:var(--accent);
-      color:var(--bg);
-      padding:12px;
-      border-radius:50%;
-      display:none;
-      font-size:1.2rem;
-      cursor:pointer;
-      box-shadow:0 2px 12px rgba(0,0,0,0.3);
-      z-index:99;
-      transition: transform .2s;
-    }
-    #backToTop:hover { transform:scale(1.1); }
 
     footer {
-      text-align:center; padding:20px;
-      margin:60px 0 20px;
-      color:var(--fg);
-      font-size:.9rem;
+      text-align: center;
+      padding: 20px;
+      background: #101216;
+      color: white;
+      margin-top: 40px;
     }
   </style>
-
 </head>
 <body>
 
-  <!-- Custom Cursor -->
-  <div class="cursor" id="cursor"></div>
+<header>
+  <img src="profile.jpg" alt="Mithuun Profile" class="profile-pic">
+  <h1>Mithuun B</h1>
+  <div class="typing">BSc IT Student | Web Developer | Prompt Engineer Intern</div>
+  <a href="Mithuun_Resume.pdf" class="resume-btn" download>📄 Download Resume</a>
+</header>
 
-  <!-- Navigation -->
-  <nav id="navbar">
-    <a href="#about">About</a>
-    <a href="#projects">Projects</a>
-    <a href="#skills">Skills</a>
-    <a href="#contact">Contact</a>
-  </nav>
+<nav>
+  <a href="#about">About</a>
+  <a href="#projects">Projects</a>
+  <a href="#skills">Skills</a>
+  <a href="#contact">Contact</a>
+</nav>
 
-  <!-- Header -->
-  <header id="about">
-    <img src="profile.jpg" alt="Mithuun Profile">
-    <h1>Mithuun B</h1>
-    <div id="typed-text"></div>
-    <button onclick="toggleTheme()" class="toggle-btn"><i class="fas fa-adjust"></i></button>
-    <a href="Mithuun_Resume.pdf" class="resume-btn">Resume</a>
-  </header>
+<section id="about" data-aos="fade-up">
+  <h2>About Me</h2>
+  <p style="text-align: center; max-width: 700px; margin: auto;">
+    I'm Mithuun, a passionate BSc IT student with a focus on building modern, responsive, and intelligent software systems. I love crafting beautiful UIs and smart backend systems.
+  </p>
+</section>
 
-  <!-- Projects -->
-  <section id="projects" data-aos="fade-up">
-    <h2>Projects</h2>
-    <div class="projects glass-card" id="projects-container">
-      <!-- Filled by JS -->
+<section id="projects" data-aos="fade-up">
+  <h2>Projects</h2>
+  <div class="projects">
+    <div class="project">
+      <img src="bank.jpg" alt="Banking System">
+      <h3>Banking System</h3>
+      <p>A banking system built in C++ to manage accounts, transactions, and reporting efficiently.</p>
     </div>
-  </section>
-
-  <!-- Skills -->
-  <section id="skills" data-aos="fade-up">
-    <h2>Skills</h2>
-    <div class="skills-slider">
-      <div class="skills-track">
-        <span>HTML</span><span>CSS</span><span>JS</span><span>PHP</span><span>SQL</span><span>C++</span><span>Python</span><span>Git</span><span>Responsive</span><span>Teamwork</span>
-      </div>
+    <div class="project">
+      <img src="furycar.jpg" alt="MAX FURY CAR">
+      <h3>MAX FURY CAR</h3>
+      <p>1st Prize winning Wi-Fi robot car with real-time video surveillance.</p>
     </div>
-  </section>
+    <div class="project">
+      <img src="triptastic.jpg" alt="TRIPTASTIC">
+      <h3>TRIPTASTIC</h3>
+      <p>A travel planner built with HTML, CSS, JavaScript, PHP, and MySQL for full stack trip management.</p>
+    </div>
+    <div class="project">
+      <img src="carquest.jpg" alt="CAR QUEST">
+      <h3>CAR QUEST</h3>
+      <p>Responsive car showcase site built with interactive UI features and mobile-first design.</p>
+    </div>
+  </div>
+</section>
 
-  <!-- Contact -->
-  <section id="contact" data-aos="fade-up">
-    <h2>Contact</h2>
-    <form action="https://formspree.io/f/{your_id}" method="POST">
-      <input name="name" type="text" placeholder="Name" required>
-      <input name="email" type="email" placeholder="Email" required>
-      <textarea name="message" rows="4" placeholder="Your Message" required></textarea>
-      <button type="submit" class="submit-btn">Send</button>
+<section id="skills" data-aos="fade-up">
+  <h2>Skills</h2>
+  <div class="skills-slider">
+    <div class="skills-track">
+      <span>HTML</span>
+      <span>CSS</span>
+      <span>JavaScript</span>
+      <span>PHP</span>
+      <span>SQL</span>
+      <span>C++</span>
+      <span>Python</span>
+      <span>Responsive Design</span>
+      <span>Git</span>
+      <span>Teamwork</span>
+    </div>
+  </div>
+</section>
+
+<section id="contact" data-aos="fade-up">
+  <h2>Contact</h2>
+  <div class="contact">
+    <form action="https://formspree.io/f/your_id" method="POST">
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="email" name="email" placeholder="Your Email" required>
+      <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+      <button type="submit">Send Message</button>
     </form>
-  </section>
+  </div>
+</section>
 
-  <button id="backToTop" title="Back to Top">↑</button>
+<footer>
+  &copy; 2025 Mithuun B. All Rights Reserved.
+</footer>
 
-  <footer>&copy; 2025 Mithuun B. All Rights Reserved.</footer>
+<script>
+  AOS.init();
+</script>
 
-  <script>
-    // Init AOS
-    AOS.init({ once:true, duration:800 });
-
-    // Enable theme toggle
-    function toggleTheme(){
-      document.body.classList.toggle('light');
-    }
-
-    // Typed.js intro
-    new Typed('#typed-text', {
-      strings: ['BSc IT Student', 'Web Developer', 'Prompt Engineering Intern'],
-      typeSpeed: 70, backSpeed:40, backDelay:2000, loop:true
-    });
-
-    // Custom cursor movement
-    const cursor = document.getElementById('cursor');
-    document.addEventListener('mousemove', e => {
-      cursor.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
-    });
-
-    // Back to Top logic
-    const back = document.getElementById('backToTop');
-    window.addEventListener('scroll', () => {
-      back.style.display = window.scrollY > 400 ? 'block' : 'none';
-    });
-    back.addEventListener('click', () => window.scrollTo({ top:0, behavior:'smooth' }));
-
-    // ScrollSpy active nav link
-    const sections = document.querySelectorAll('section[id]');
-    window.addEventListener('scroll', () => {
-      let top = window.scrollY + 200;
-      sections.forEach(sec => {
-        if(top >= sec.offsetTop && top < sec.offsetTop + sec.offsetHeight){
-          document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
-          document.querySelector(`nav a[href="#${sec.id}"]`).classList.add('active');
-        }
-      });
-    });
-
-    // Projects JSON + render
-    const projects = [
-      {
-        title: 'Banking System',
-        img: 'bank.jpg',
-        desc: 'C++ system to manage bank accounts and transactions.',
-        live: '', code: ''
-      },
-      {
-        title: 'MAX FURY CAR',
-        img: 'furycar.jpg',
-        desc: 'Wi-Fi surveillance robot car that won 1st prize.',
-        live: '', code: ''
-      },
-      {
-        title: 'TRIPTASTIC',
-        img: 'triptastic.jpg',
-        desc: 'Travel planner using HTML, CSS, JS, PHP & SQL.',
-        live: '', code: ''
-      },
-      {
-        title: 'CAR QUEST',
-        img: 'carquest.jpg',
-        desc: 'Responsive web app showcasing cars.',
-        live: '', code: ''
-      }
-    ];
-    const container = document.getElementById('projects-container');
-    projects.forEach(p => {
-      container.innerHTML += `
-        <div class="project glass-card">
-          <img src="${p.img}" alt="${p.title}">
-          <div class="project-content">
-            <h3>${p.title}</h3>
-            <p>${p.desc}</p>
-            <div class="project-btns">
-              ${p.live ? `<a href="${p.live}" target="_blank">Live</a>` : ''}
-              ${p.code ? `<a href="${p.code}" target="_blank">Code</a>` : ''}
-            </div>
-          </div>
-        </div>`;
-    });
-
-    // GSAP animations
-    gsap.utils.toArray('.project').forEach((el, i) => {
-      gsap.from(el, {
-        y:50, opacity:0, duration:0.8,
-        scrollTrigger: { trigger: el, start: 'top 80%' },
-        delay: i * 0.2
-      });
-    });
-  </script>
 </body>
 </html>
